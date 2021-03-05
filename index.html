@@ -6,6 +6,8 @@
         <title>Library</title>
         <link rel="stylesheet" type="text/css" href="css/reset.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     </head>
     <body>
         <div class="container">
@@ -17,40 +19,24 @@
                 <button class="search-button buttons">Search</button>
             </div>
             <div class="card-container">
-
-                <div class="card">
-                    <span class="card-close">&times;</span>
-                    <div class="card-title">Sherlock Holmes</div>
-                    <div class="card-content">
-                        <p class="card-contents">Author: Sir Arthur Conan Doyle</p>
-                        <p class="card-contents">Pages: 678</p>
-                        <p class="card-contents">Published: 2009</p>
-                    </div>
-                    <div class="card-read">Read</div>
-                </div>
-
             </div>
             <div class="add-button">+</div>
             <div class="modal">
-
                 <div class="modal-content">
                     <div class="modal-header">
                         ADD BOOK
                     </div>
-
                     <div class="modal-body">
                         <input class="modal-input" id="title"     placeholder="Title" type="text">
                         <input class="modal-input" id="author"    placeholder="Author" type="text">
                         <input class="modal-input" id="pages"     placeholder="Number of Pages" type="number">
                         <input class="modal-input" id="published" placeholder="Year of Publishing" type="number" min="1600" max="2021">
                     </div>
-
                     <div class="modal-footer">
                         <button class="buttons" id="modal-confirm">SAVE</button>
                         <button class="buttons" id="modal-cancel">CANCEL</button>
                     </div>
                 </div>
-
             </div>
         </div>
         <script src="scripts/script.js"></script>
