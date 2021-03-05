@@ -1,3 +1,4 @@
+// demo data
 let books = [
     {
         title: 'Harry Potter',
@@ -49,6 +50,7 @@ saveButton.addEventListener('click', addBookToLibrary);
 
 // initial call
 displayBooks();
+
 
 // constructor function
 function Book(title, author, pages, published, read) {
@@ -102,7 +104,7 @@ function updateStorage() {
 
 // delete persistent library data
 function deleteStorage() {
-    localStorage.removeItem('books');
+    localStorage.clear();
 }
 
 // get user input
