@@ -29,12 +29,17 @@
                     <div class="modal-body">
                         <input class="modal-input" id="title"     placeholder="Title" type="text">
                         <input class="modal-input" id="author"    placeholder="Author" type="text">
-                        <input class="modal-input" id="pages"     placeholder="Number of Pages" type="number">
+                        <input class="modal-input" id="pages"     placeholder="Number of Pages" min="1" type="number">
                         <input class="modal-input" id="published" placeholder="Year of Publishing" type="number" min="1600" max="2021">
-                    </div>
-                    <div class="modal-footer">
-                        <button class="buttons" id="modal-confirm">SAVE</button>
-                        <button class="buttons" id="modal-cancel">CANCEL</button>
+                        <select class="modal-input" id="read">
+                            <option value="" disabled selected hidden>Have you read the book?</option>
+                            <option value="yes">Yes, I have read the book</option>
+                            <option value="no">No, I haven't read the book yet</option>
+                        </select>
+                        <div class="modal-buttons">
+                            <button class="buttons" id="modal-confirm" type="submit">SAVE</button>
+                            <button class="buttons" id="modal-cancel">CANCEL</button>
+                        </div>
                     </div>
                 </div>
             </div>
