@@ -1,5 +1,5 @@
 :root {
-    font-family: monospace;
+    font-family: 'Montserrat', monospace;
     background-color: floralwhite;
 }
 
@@ -11,34 +11,33 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 20px;
     position: relative;
+    padding: 20px;
     height: 100vh;
     width: 100vw;
 }
 
 .title {
+    padding: 20px;
     font-size: 3.5em;
     border-bottom: 2px solid black;
-    padding: 20px;
 }
 
-
 .search {
+    padding: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 20px;
 }
 
 .search-bar {
-    padding: 5px 10px;
-    height: 35px;
     width: 200px;
+    height: 35px;
+    margin: 10px;
+    padding: 5px 10px;
     background: floralwhite;
     border: 2px solid black;
     border-radius: 25px;
-    margin: 10px;
 }
 
 .search-bar:focus {
@@ -46,17 +45,17 @@
 }
 
 .buttons {
+    margin: 10px;
     height: 35px;
-    padding: 5px 15px;
     cursor: pointer;
-    background-color: bisque;
+    padding: 5px 15px;
+    background-color: rgba(255, 228, 196, 0.5);
     border: 2px solid black;
     border-radius: 25px;
-    margin: 10px;
 }
 
 .buttons:hover {
-    background-color: lightcoral;
+    background-color: rgb(255, 228, 196, 1.0);
 }
 
 .buttons:focus {
@@ -71,15 +70,14 @@
 
 .card {
     width: 300px;
-    height: 180px;
     margin: 20px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background: linear-gradient(-135deg, peachpuff, salmon);
     border: 2px solid black;
     border-radius: 10px;
-    background: linear-gradient(-135deg, peachpuff, salmon);
     transition: all 200ms;
     position: relative;
     cursor: pointer;
@@ -95,16 +93,18 @@
     padding: 10px 0px;
 }
 
-.card-content {
+.card-description {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
     font-weight: medium;
     padding: 5px 0px;
 }
 
-.card-close {
+.card-description .card-content {
+    margin: 5px 0px;
+}
+
+.card-remove {
     cursor: pointer;
     font-size: 1.25em;
     position: absolute;
@@ -138,8 +138,8 @@
     align-items: center;
     justify-content: center;
 
-    font-size: 3em;
     color: white;
+    font-size: 3em;
     background: linear-gradient(45deg, salmon, lightsalmon);
     box-shadow: 0px 4px 12px 0px rgba(41, 41, 41, 0.4);
     border-radius: 50%;
@@ -154,6 +154,7 @@
     z-index: 1;
     width: 100%;
     height: 100%;
+    display: none;
     overflow: auto;
     background-color: rgba(41, 41, 41, 0.3);
     animation-name: fadeIn;
@@ -193,22 +194,22 @@
 
 .modal-header {
     font-size: 2em;
-    border-bottom: 2px solid black;
     padding: 20px 0px;
+    border-bottom: 2px solid black;
 }
 
 .modal-body {
-    margin: 20px 0px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin: 20px 0px;
 }
 
 .modal-input {
     padding: 10px;
     margin: 10px 0px;
     font-size: 1.25em;
-    border: 2px solid dimgrey;
+    border: 1px solid dimgrey;
     border-radius: 10px;
 }
 
@@ -221,10 +222,20 @@
     justify-content: flex-end;
 }
 
+.modal-footer #modal-confirm {
+    height: 40px;
+    background-color: rgba(143, 188, 143, 0.6);
+}
+
 .modal-footer #modal-confirm:hover {
-    background-color: darkseagreen;
+    background-color: rgba(143, 188, 143, 1.0);
+}
+
+.modal-footer #modal-cancel {
+    height: 40px;
+    background-color: rgb(250, 128, 114, 0.6);
 }
 
 .modal-footer #modal-cancel:hover {
-    background-color: salmon;
+    background-color: rgb(250, 128, 114, 1.0);
 }
