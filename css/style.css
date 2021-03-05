@@ -4,6 +4,7 @@
 }
 
 * {
+    font-family: 'Montserrat', monospace;
     box-sizing: border-box;
 }
 
@@ -213,29 +214,33 @@
     border-radius: 10px;
 }
 
+select {
+    background-color: white;
+}
+
 .modal-input:focus {
     outline: none;
 }
 
-.modal-footer {
+.modal-buttons {
     display: flex;
     justify-content: flex-end;
 }
 
-.modal-footer #modal-confirm {
+.modal-buttons #modal-confirm {
     height: 40px;
     background-color: rgba(143, 188, 143, 0.6);
 }
 
-.modal-footer #modal-confirm:hover {
+.modal-buttons #modal-confirm:hover {
     background-color: rgba(143, 188, 143, 1.0);
 }
 
-.modal-footer #modal-cancel {
+.modal-buttons #modal-cancel {
     height: 40px;
     background-color: rgb(250, 128, 114, 0.6);
 }
 
-.modal-footer #modal-cancel:hover {
+.modal-buttons #modal-cancel:hover {
     background-color: rgb(250, 128, 114, 1.0);
 }
