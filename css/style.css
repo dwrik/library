@@ -121,13 +121,17 @@
 .card-read {
     cursor: pointer;
     padding: 5px 10px;
-    width: fit-content;
     align-self: flex-end;
     border: 1px solid black;
     border-radius: 15px;
+    transition: all 400ms;
 }
 
-.card-read:hover {
+.card-read:active {
+    transform: scale(0.9);
+}
+
+.card-read:hover, .card-read-selected {
     background-color: salmon;
 }
 
