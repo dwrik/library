@@ -69,16 +69,40 @@ function addBookToLibrary(event) {
     hideModal();
     books.push(book);
     cardContainer.appendChild(getCard(book, books.length - 1));
+    updateStorage();
 }
 
-// helper
-function hideModal(event) {
-    modal.style.display = 'none';
-    document.querySelector('#title').value = '';
-    document.querySelector('#author').value = '';
-    document.querySelector('#pages').value = '';
-    document.querySelector('#published').value = '';
-    document.querySelector('#read').value = '';
+// remove book
+function removeBook(event) {
+    const card = event.target.parentElement;
+    cardContainer.removeChild(card);
+
+    const index = card.dataset.id;
+    books.splice(index, 1);
+    updateStorage();
+}
+
+// toggle book read status
+function toggleRead(event) {
+    const card = event.target.parentElement;
+
+    const index = card.dataset.id;
+    books[index].read = (books[index].read)? false : true;
+
+    const cardRead = card.querySelector('.card-read');
+    cardRead.classList.toggle('card-read-selected');
+    cardRead.innerHTML = (books[index].read)? 'Read' : 'Not Read';
+    updateStorage();
+}
+
+// store books in local storage
+function updateStorage() {
+    localStorage.setItem('books', JSON.stringify(books));
+}
+
+// delete persistent library data
+function deleteStorage() {
+    localStorage.removeItem('books');
 }
 
 // get user input
@@ -97,6 +121,16 @@ function getBookInfo() {
     };
 }
 
+// helper
+function hideModal(event) {
+    modal.style.display = 'none';
+    document.querySelector('#title').value = '';
+    document.querySelector('#author').value = '';
+    document.querySelector('#pages').value = '';
+    document.querySelector('#published').value = '';
+    document.querySelector('#read').value = '';
+}
+
 // check for empty strings
 function validateBookInfo(book) {
     for (let key in book) {
@@ -107,17 +141,12 @@ function validateBookInfo(book) {
     return true;
 }
 
-// remove book
-function removeBook(event) {
-    const card = event.target.parentElement;
-    cardContainer.removeChild(card);
-
-    const index = card.dataset.id;
-    books.splice(index, 1);
-}
-
 // show all books as cards
 function displayBooks() {
+    // check for existing library
+    const storage = localStorage.getItem('books');
+    books = JSON.parse(storage) ?? books;
+
     for (let index in books) {
         const book = books[index];
         const card = getCard(book, index);
@@ -151,18 +180,6 @@ function getCard(book, id) {
     card.appendChild(cardRead);
 
     return card;
-}
-
-// toggle book read status
-function toggleRead(event) {
-    const card = event.target.parentElement;
-
-    const index = card.dataset.id;
-    books[index].read = (books[index].read)? false : true;
-
-    const cardRead = card.querySelector('.card-read');
-    cardRead.classList.toggle('card-read-selected');
-    cardRead.innerHTML = (books[index].read)? 'Read' : 'Not Read';
 }
 
 // div creator helper
