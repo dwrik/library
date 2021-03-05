@@ -50,12 +50,6 @@ saveButton.addEventListener('click', addBookToLibrary);
 // initial call
 displayBooks();
 
-
-// helper
-function hideModal(event) {
-    modal.style.display = 'none';
-}
-
 // constructor function
 function Book(title, author, pages, published, read) {
     this.title = title;
@@ -65,6 +59,7 @@ function Book(title, author, pages, published, read) {
     this.read = read;
 }
 
+// add book
 function addBookToLibrary(event) {
     let book = getBookInfo();
     let isValid = validateBookInfo(book);
@@ -73,7 +68,17 @@ function addBookToLibrary(event) {
     }
     hideModal();
     books.push(book);
-    cardContainer.appendChild(getCard(book));
+    cardContainer.appendChild(getCard(book, books.length - 1));
+}
+
+// helper
+function hideModal(event) {
+    modal.style.display = 'none';
+    document.querySelector('#title').value = '';
+    document.querySelector('#author').value = '';
+    document.querySelector('#pages').value = '';
+    document.querySelector('#published').value = '';
+    document.querySelector('#read').value = '';
 }
 
 // get user input
@@ -102,44 +107,62 @@ function validateBookInfo(book) {
     return true;
 }
 
+// remove book
+function removeBook(event) {
+    const index = event.target.dataset.id;
+    const card = cardContainer.querySelector(`[data-id="${index}"]`).parentElement;
+    cardContainer.removeChild(card);
+    books.splice(index, 1);
+}
+
 // show all books as cards
 function displayBooks() {
     for (let index in books) {
         const book = books[index];
-        const card = getCard(book);
+        const card = getCard(book, index);
         cardContainer.appendChild(card);
     }
 }
 
 // card creator helper
-function getCard(book) {
+function getCard(book, id) {
     const card = getElement('div', '', 'card');
+    const cardRead = getElement('div', 'Read', 'card-read');
     const cardTitle = getElement('div', book.title, 'card-title');
+    const cardRemove = getElement('span', '&times;', 'card-remove');
+    const cardDescription = getElement('div', '', 'card-description');
     const cardPages = getElement('p', `Pages: ${book.pages}`, 'card-content');
     const cardAuthor = getElement('p', `Author: ${book.author}`, 'card-content');
-    const cardRemove = getElement('span', '&times;', 'card-remove');
     const cardPublished = getElement('p', `Published: ${book.published}`, 'card-content');
-    const cardDescription = getElement('div', '', 'card-description');
-    const cardRead = getElement('div', 'Read', 'card-read');
-    if (book.read) {
-        cardRead.style.backgroundColor = 'salmon';
-    }
+
+    if (book.read) cardRead.style.backgroundColor = 'salmon';
+    cardRemove.setAttribute('data-id', id);
+    cardRemove.addEventListener('click', removeBook);
+    cardRead.addEventListener('click', toggleRead);
+
     cardDescription.appendChild(cardAuthor);
     cardDescription.appendChild(cardPages);
     cardDescription.appendChild(cardPublished);
+
     card.appendChild(cardRemove);
     card.appendChild(cardTitle);
     card.appendChild(cardDescription);
     card.appendChild(cardRead);
+
     return card;
+}
+
+function toggleRead(event) {
 }
 
 // div creator helper
 function getElement(element, text, ...classes) {
     const newElement = document.createElement(element);
     newElement.innerHTML = text;
+
     for (let index in classes) {
         newElement.classList.add(classes[index]);
     }
+
     return newElement;
 }
