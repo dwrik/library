@@ -8,64 +8,49 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
-        <div id="container">
-            <div id="title">
+        <div class="container">
+            <div class="title">
                 Library
             </div>
-            <div id="action-bar">
-                <div id="search">
-                    <input id="search-bar" type="text">
-                    <button id="search-button" class="buttons">Search</button>
-                </div>
-                <!--
-                    TODO: Make this button a floating one at the bottom right
-
-                    <button class="buttons" id="add-button">Add Book</button>
-                -->
+            <div class="search">
+                <input class="search-bar" type="search" placeholder="Search by title or author...">
+                <button class="search-button buttons">Search</button>
             </div>
-            <div id="card-container">
+            <div class="card-container">
+
                 <div class="card">
-                    <span class="card-close">x</span>
+                    <span class="card-close">&times;</span>
                     <div class="card-title">Sherlock Holmes</div>
-                    <div class="card-author">Author: Sir Arthur Conan Doyle</div>
-                    <div class="card-pages">Pages: 678</div>
+                    <div class="card-content">
+                        <p class="card-contents">Author: Sir Arthur Conan Doyle</p>
+                        <p class="card-contents">Pages: 678</p>
+                        <p class="card-contents">Published: 2009</p>
+                    </div>
                     <div class="card-read">Read</div>
                 </div>
-                <div class="card">
-                    <span class="card-close">x</span>
-                    <div class="card-title">Sherlock Holmes</div>
-                    <div class="card-author">Author: Sir Arthur Conan Doyle</div>
-                    <div class="card-pages">Pages: 678</div>
-                    <div class="card-read">Read</div>
+
+            </div>
+            <div class="add-button">+</div>
+            <div class="modal">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        ADD BOOK
+                    </div>
+
+                    <div class="modal-body">
+                        <input class="modal-input" id="title"     placeholder="Title" type="text">
+                        <input class="modal-input" id="author"    placeholder="Author" type="text">
+                        <input class="modal-input" id="pages"     placeholder="Number of Pages" type="number">
+                        <input class="modal-input" id="published" placeholder="Year of Publishing" type="number" min="1600" max="2021">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="buttons" id="modal-confirm">SAVE</button>
+                        <button class="buttons" id="modal-cancel">CANCEL</button>
+                    </div>
                 </div>
-                <div class="card">
-                    <span class="card-close">x</span>
-                    <div class="card-title">Sherlock Holmes</div>
-                    <div class="card-author">Author: Sir Arthur Conan Doyle</div>
-                    <div class="card-pages">Pages: 678</div>
-                    <div class="card-read">Read</div>
-                </div>
-                <div class="card">
-                    <span class="card-close">x</span>
-                    <div class="card-title">Sherlock Holmes</div>
-                    <div class="card-author">Author: Sir Arthur Conan Doyle</div>
-                    <div class="card-pages">Pages: 678</div>
-                    <div class="card-read">Read</div>
-                </div>
-                <div class="card">
-                    <span class="card-close">x</span>
-                    <div class="card-title">Sherlock Holmes</div>
-                    <div class="card-author">Author: Sir Arthur Conan Doyle</div>
-                    <div class="card-pages">Pages: 678</div>
-                    <div class="card-read">Read</div>
-                </div>
-                <div class="card">
-                    <span class="card-close">x</span>
-                    <div class="card-title">Sherlock Holmes</div>
-                    <div class="card-author">Author: Sir Arthur Conan Doyle</div>
-                    <div class="card-pages">Pages: 678</div>
-                    <div class="card-read">Read</div>
-                </div>
+
             </div>
         </div>
         <script src="scripts/script.js"></script>
