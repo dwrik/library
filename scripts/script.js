@@ -109,9 +109,10 @@ function validateBookInfo(book) {
 
 // remove book
 function removeBook(event) {
-    const index = event.target.dataset.id;
-    const card = cardContainer.querySelector(`[data-id="${index}"]`).parentElement;
+    const card = event.target.parentElement;
     cardContainer.removeChild(card);
+
+    const index = card.dataset.id;
     books.splice(index, 1);
 }
 
@@ -127,7 +128,7 @@ function displayBooks() {
 // card creator helper
 function getCard(book, id) {
     const card = getElement('div', '', 'card');
-    const cardRead = getElement('div', 'Read', 'card-read');
+    const cardRead = getElement('div', book.read? 'Read' : 'Not Read', 'card-read');
     const cardTitle = getElement('div', book.title, 'card-title');
     const cardRemove = getElement('span', '&times;', 'card-remove');
     const cardDescription = getElement('div', '', 'card-description');
@@ -135,10 +136,10 @@ function getCard(book, id) {
     const cardAuthor = getElement('p', `Author: ${book.author}`, 'card-content');
     const cardPublished = getElement('p', `Published: ${book.published}`, 'card-content');
 
-    if (book.read) cardRead.style.backgroundColor = 'salmon';
-    cardRemove.setAttribute('data-id', id);
+    if (book.read) cardRead.classList.add('card-read-selected');
     cardRemove.addEventListener('click', removeBook);
     cardRead.addEventListener('click', toggleRead);
+    card.setAttribute('data-id', id);
 
     cardDescription.appendChild(cardAuthor);
     cardDescription.appendChild(cardPages);
@@ -152,7 +153,16 @@ function getCard(book, id) {
     return card;
 }
 
+// toggle book read status
 function toggleRead(event) {
+    const card = event.target.parentElement;
+
+    const index = card.dataset.id;
+    books[index].read = (books[index].read)? false : true;
+
+    const cardRead = card.querySelector('.card-read');
+    cardRead.classList.toggle('card-read-selected');
+    cardRead.innerHTML = (books[index].read)? 'Read' : 'Not Read';
 }
 
 // div creator helper
