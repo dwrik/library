@@ -24,24 +24,23 @@
     border-bottom: 2px solid black;
 }
 
-.search {
-    padding: 20px;
+.action-bar {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
 }
 
-.search-bar {
-    width: 200px;
-    height: 35px;
+#filter-label, #filter {
     margin: 10px;
-    padding: 5px 10px;
-    background: floralwhite;
-    border: 2px solid black;
-    border-radius: 25px;
 }
 
-.search-bar:focus {
+#filter {
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#filter:focus {
     outline: none;
 }
 
@@ -233,6 +232,7 @@ select {
 
 .modal-buttons {
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-end;
 }
 
@@ -252,4 +252,36 @@ select {
 
 .modal-buttons #modal-cancel:hover {
     background-color: rgb(250, 128, 114, 1.0);
+}
+
+@media (max-width: 270px) {
+    .title {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 240px) {
+    .title {
+        font-size: 1.25em;
+        font-weight: bold;
+        text-align: center;
+    }
+    .card-title {
+        font-size: 1em;
+    }
+    .action-bar {
+        margin-top: 10px;
+    }
+    .modal-header {
+        font-size: 1.5em;
+    }
+    .modal-input {
+        font-size: 1em;
+    }
+    .modal-buttons {
+        justify-content: center;
+    }
+    .modal-buttons .buttons {
+        width: 100%;
+    }
 }
