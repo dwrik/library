@@ -114,13 +114,13 @@ function getBookInfo() {
     const pages = document.querySelector('#pages').value;
     const published = document.querySelector('#published').value;
     const read = (document.querySelector('#read').value === 'yes')? true : false;
-    return {
+    return new Book(
         title,
         author,
         pages,
         published,
         read,
-    };
+    );
 }
 
 // helper
