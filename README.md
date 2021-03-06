@@ -6,4 +6,4 @@ Library system implemented using `html`, `css` and `javascript`. The project has
 
 ![add book modal](/images/modal.png)
 
-As for the project, it's a library system where the books are displayed as cards and the user can add new books, remove existing ones and toggle their read status. Adding a book is done through a modal. `localStorage` api has also been implemented in order to provide persistence.
+As for the project, it's a library system where the books are displayed as cards and the user can add new books, remove existing ones, toggle their read status and filter books based on their read status. Adding a book is done through a modal. `localStorage` api has been implemented in order to provide persistence.
