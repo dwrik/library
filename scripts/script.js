@@ -23,6 +23,11 @@ let books = [
     },
 ];
 
+// constants for read status
+const ALL = '0';
+const READ = '1';
+const NOT_READ = '2';
+
 // card container reference for adding book cards
 const cardContainer = document.querySelector('.card-container')
 
@@ -48,9 +53,12 @@ cancelButton.addEventListener('click', hideModal);
 const saveButton = document.querySelector('#modal-confirm');
 saveButton.addEventListener('click', addBookToLibrary);
 
+// filter
+const filterSelector = document.querySelector('#filter');
+filterSelector.addEventListener('change', filterBy);
+
 // initial call
 displayBooks();
-
 
 // constructor function
 function Book(title, author, pages, published, read) {
@@ -97,6 +105,42 @@ function toggleRead(event) {
     updateStorage();
 }
 
+// filter books
+function filterBy(event) {
+    const filter = filterSelector.value;
+    switch (filter) {
+        case ALL:      displayBooks();     break;
+        case READ:     showReadBooks();    break;
+        case NOT_READ: showNotReadBooks(); break;
+    }
+}
+
+// read books
+function showReadBooks() {
+    removeAllCards();
+    books.forEach((book, index) => {
+        if (!book.read) return;
+        const card = getCard(book, index);
+        cardContainer.appendChild(card);
+    });
+}
+
+// not read books
+function showNotReadBooks() {
+    removeAllCards();
+    books.forEach((book, index) => {
+        if (book.read) return;
+        const card = getCard(book, index);
+        cardContainer.appendChild(card);
+    });
+}
+
+// remove all cards
+function removeAllCards() {
+    const allCards = [ ...document.querySelectorAll('.card') ];
+    allCards.forEach((card) => cardContainer.removeChild(card));
+}
+
 // store books in local storage
 function updateStorage() {
     localStorage.setItem('books', JSON.stringify(books));
@@ -135,25 +179,25 @@ function hideModal(event) {
 
 // check for empty strings
 function validateBookInfo(book) {
-    for (let key in book) {
-        if (book[key].length === 0) {
-            return false;
-        }
-    }
-    return true;
+    const keys = Object.keys(book);
+    return keys.every((key) => {
+        if (key === 'read') return true;
+        return book[key].length > 0;
+    });
 }
 
 // show all books as cards
 function displayBooks() {
+    removeAllCards();
+
     // check for existing library
     const storage = localStorage.getItem('books');
     books = JSON.parse(storage) ?? books;
 
-    for (let index in books) {
-        const book = books[index];
+    books.forEach((book, index) => {
         const card = getCard(book, index);
         cardContainer.appendChild(card);
-    }
+    });
 }
 
 // card creator helper
@@ -187,11 +231,7 @@ function getCard(book, id) {
 // div creator helper
 function getElement(element, text, ...classes) {
     const newElement = document.createElement(element);
+    classes.forEach((customClass) => newElement.classList.add(customClass));
     newElement.innerHTML = text;
-
-    for (let index in classes) {
-        newElement.classList.add(classes[index]);
-    }
-
     return newElement;
 }
