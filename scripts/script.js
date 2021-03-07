@@ -60,13 +60,15 @@ filterSelector.addEventListener('change', filterBy);
 // initial call
 displayBooks();
 
-// constructor function
-function Book(title, author, pages, published, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.published = published;
-    this.read = read;
+// Book
+class Book {
+    constructor(title, author, pages, published, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.published = published;
+        this.read = read;
+    }
 }
 
 // add book
